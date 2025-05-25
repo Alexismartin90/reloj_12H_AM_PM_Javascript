@@ -5,7 +5,7 @@ function nuevoReloj() {
     let diaDelMes = new Date().getDate().toString().padStart(2, "0");
     let mesAño = (new Date().getMonth()+1).toString().padStart(2, "0");
     let añocurso = new Date().getFullYear();
-    let horaactual = new Date().getHours().toString().padStart(2, "0");
+    let horaactual = new Date().getHours();
     let minutosActual = new Date().getMinutes().toString().padStart(2, "0");
     let segundosActual = new Date().getSeconds().toString().padStart(2, "0");
     let periodo;
@@ -14,13 +14,12 @@ function nuevoReloj() {
     } else {
         periodo = "AM";
     }
-    
-    if(horaactual === 0) {
+    if(horaactual == 0){
         horaactual = 12;
-    } else {
+    } else if(horaactual > 12){
         horaactual = horaactual % 12;
     }
-    let textoAmostrar = `Hoy es el dia ${diaSemanaLetras[diaSemanaNumero]} ${diaDelMes}/${mesAño}/${añocurso} y son las ${horaactual}:${minutosActual}:${segundosActual} ${periodo}`;
+    let textoAmostrar = `Hoy es el dia ${diaSemanaLetras[diaSemanaNumero]} ${diaDelMes}/${mesAño}/${añocurso} y son las ${horaactual.toString().padStart(2, "0")}:${minutosActual}:${segundosActual} ${periodo}`;
     document.getElementById("reloj").innerHTML = textoAmostrar;
 }
 
